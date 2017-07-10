@@ -12,3 +12,9 @@ Please consder using branches for your work and submitting pull requests for rev
 Alternatively, just be careful.
 
 But most of all, have fun :smile:
+
+### Submission time!
+
+We can upload up to 10 submissions per day. So go crazy!
+
+Here are [the guidelines](http://www.fragilefamilieschallenge.org/upload-your-contribution/) and here's the [upload site](https://codalab.fragilefamilieschallenge.org/).
