@@ -9,8 +9,8 @@ ggplot(data=train, aes(train$grit))+geom_histogram(breaks=seq(1,4,0.33))
 ggplot(all, aes(x=hv5_dsraw, y=gpa)) + geom_point()
 ggplot(tmp, aes(x=hv5_ppvtraw, y=gpa)) + geom_point(alpha=0.1) + stat_summary(fun.data=mean_cl_normal) + geom_smooth(method='lm')
 
-submit<-merge(prediction, train, by='challengeID', suffixes=c('_pred','_train'))
-submit<-merge(submit, background[,c('challengeID','hv5_ppvtraw')], by='challengeID')
+submit<-merge(prediction, train, by='challengeID', suffixes=c('_pred','_train'), all=T)
+submit<-merge(submit, background[,c('challengeID','hv5_ppvtraw')], by='challengeID', all.x=T)
 ###---Linear model---###
 lm_submit <- function(dt, train_column, submit_column){
   dt[is.na(hv5_ppvtraw), hv5_ppvtraw:=mean(hv5_ppvtraw, na.rm=T)]
@@ -39,4 +39,4 @@ submit<-glm_submit(submit, 'eviction_train', 'eviction')
 submit<-glm_submit(submit, 'layoff_train', 'layoff')
 submit<-glm_submit(submit, 'jobTraining_train', 'jobTraining')
 submit_final <- submit[,c(colnames(prediction)), with=F]
-write.csv(submit_final, '...../FragileFamiliesChallenge/submit_20170710.csv', row.names = F)
+write.csv(submit_final, 'C:/Users/bz247/Documents/FragileFamiliesChallenge/submit_20170710.csv', row.names = F)
