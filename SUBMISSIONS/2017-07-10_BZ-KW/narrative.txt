@@ -1,0 +1,5 @@
+This is the Alan Turing Institute Team's first submission.
+
+It is a very simple linear correlation between each of the outcome variables with raw vocabulary scores  (hv5_ppvtraw) acquired at year 9. The model fit was used to predict values for each participant in the test data set, and any participants with missing vocabulary scores were given the mean of the given outcome measure.
+
+We don't intend for this to be the best model! We just thought that a proxy measure of verbal intelligence may be related to some of the outcome variables (most specifically GPA). 
