@@ -1,0 +1,5 @@
+This is the Alan Turing Institute Team's second submission.
+
+We first select continuous variabels as defined in the meta data, impute the nans, remove constant columns, which result in 1771 variables.
+Then we did PCA, keeping only the top 50 priciple components.
+Similar to the first submission, we built multi-variable linear regression and logistic regression to predict the six outcomes.
