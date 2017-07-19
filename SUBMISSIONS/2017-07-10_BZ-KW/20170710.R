@@ -1,8 +1,10 @@
 library(data.table)
 
-background <- fread('...../FFChallenge/background.csv')
-train <- fread('...../Documents/FFChallenge/train.csv')
-prediction <- fread('...../Documents/FFChallenge/prediction.csv')
+dir='C:/Users/bz247/Documents'
+
+background <- fread(paste0(dir, '/FFChallenge/background.csv'))
+train <- fread(paste0(dir, '/FFChallenge/train.csv'))
+prediction <- fread(paste0(dir, '/FFChallenge/prediction.csv'))
 
 ### Plot
 ggplot(data=train, aes(train$grit))+geom_histogram(breaks=seq(1,4,0.33))
@@ -28,8 +30,10 @@ submit<-lm_submit(submit, 'materialHardship_train', 'materialHardship')
 ###---Logistic model---###
 glm_submit <- function(dt, train_column, submit_column){
   dt[is.na(hv5_ppvtraw), hv5_ppvtraw:=mean(hv5_ppvtraw, na.rm=T)]
-  model <- glm(get(train_column)~1+hv5_ppvtraw, data=dt)
-  dt[,glm_result:=predict(model, dt[,'hv5_ppvtraw'])]
+  model <- glm(get(train_column)~1+hv5_ppvtraw, data=dt, family=binomial(link=logit), na.action = na.omit)
+  dt[,glm_result:=predict(model, dt[,'hv5_ppvtraw'], type='response')]
+  print(max(dt$glm_result))
+  print(min(dt$glm_result))
   dt[,c(submit_column):=as.integer(ifelse(glm_result>0.5,1,0))]
   dt[!is.na(get(train_column)), c(submit_column):=get(train_column)]
   dt
@@ -39,4 +43,4 @@ submit<-glm_submit(submit, 'eviction_train', 'eviction')
 submit<-glm_submit(submit, 'layoff_train', 'layoff')
 submit<-glm_submit(submit, 'jobTraining_train', 'jobTraining')
 submit_final <- submit[,c(colnames(prediction)), with=F]
-write.csv(submit_final, 'C:/Users/bz247/Documents/FragileFamiliesChallenge/submit_20170710.csv', row.names = F)
+write.csv(submit_final, paste0(dir, '/FragileFamiliesChallenge/submit_20170719.csv'), row.names = F)
