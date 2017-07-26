@@ -1,3 +1,22 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Gist
+@bz247
+Sign out
+Unwatch 9
+Star 0
+Fork 0 alan-turing-institute/FragileFamiliesChallenge
+Code  Issues 0  Pull requests 0  Projects 0  Wiki Insights 
+Branch: master Find file Copy pathFragileFamiliesChallenge/Bingyu_code/20170719.R
+74570bf  7 days ago
+@bz247 bz247 principle component analysis
+1 contributor
+RawBlameHistory     
+73 lines (63 sloc)  3.12 KB
 library(data.table)
 
 dir='C:/Users/bz247/Documents'
@@ -70,3 +89,5 @@ background_conti[, (nm) := lapply(nm, function(x_v) { #remove constant columns
   else {return(x)}
 })]
 pca <- prcomp(background_conti[,], scale=T)
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
