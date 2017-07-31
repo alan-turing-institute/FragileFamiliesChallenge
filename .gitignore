@@ -1,8 +1,3 @@
-# data
-*submit*.csv
-*submit*.zip
-*prediction.csv
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -102,3 +97,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+#Fragile Families data
+FFChallenge
