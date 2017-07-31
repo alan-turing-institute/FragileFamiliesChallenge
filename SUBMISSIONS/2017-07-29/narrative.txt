@@ -1,0 +1,3 @@
+This is the Alan Turing Institute Team's third submission.
+
+Categorical variables are selected ('constructed', 2-5 levels). Then lasso regression is used to select parameters. Linear regression or logistic regression is then used to predict the final response.

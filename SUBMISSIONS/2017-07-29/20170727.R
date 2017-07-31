@@ -157,7 +157,7 @@ level_col <- apply(background_df, 2, function(x) length(unique(x)))
 select_from_meta <- meta_background[meta_background$variable_type=='categorical',]
 select_from_meta <- select_from_meta[grep('Construct', select_from_meta$label),]
 level_col_constr_cate <- level_col[c('challengeID', as.character(select_from_meta$variable))]
-cate_col <- c('challengeID', names(level_col_constr_cate[level_col_constr_cate>1 & level_col_constr_cate<6]))
+cate_col <- c('challengeID', names(level_col_constr_cate[level_col_constr_cate>1 & level_col_constr_cate<4]))
 ### prepare the matrix for glmnet
 cate_df <- background_df[, cate_col]
 cate_df[,2:ncol(cate_df)][is.na(cate_df[,2:ncol(cate_df)])] <- 'navalue'
@@ -226,12 +226,12 @@ logistic_glmnet <- function(response, s, accept){
   print(sum(df$train==1, na.rm=T))
   return(model_predict)
 }
-eviction_pred <- logistic_glmnet('eviction', 0.002, 0.23)
-layoff_pred <- logistic_glmnet('layoff', 0.001, 0.31)
-jobTraining_pred <- logistic_glmnet('jobTraining', 0.001, 0.33)
+eviction_pred <- logistic_glmnet('eviction', 0.002, 0.16)
+layoff_pred <- logistic_glmnet('layoff', 0.001, 0.25)
+jobTraining_pred <- logistic_glmnet('jobTraining', 0.001, 0.30)
 
 submit <- as.data.frame(cbind(rep(1:4242), gpa_pred, grit_pred, mthd_pred, eviction_pred, layoff_pred, jobTraining_pred))
 colnames(submit) <- c('challengeID', 'gpa', 'grit', 'materialHardship', 'eviction', 'layoff', 'jobTraining')
-write.csv(submit, paste0(dir, '/FragileFamiliesChallenge/SUBMISSIONS/2017-07-29/submit_20170729.csv'), row.names = F)
+write.csv(submit, paste0(dir, '/FragileFamiliesChallenge/Bingyu_code/submit_20170729.csv'), row.names = F)
 
 
